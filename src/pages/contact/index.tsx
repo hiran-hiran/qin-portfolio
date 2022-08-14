@@ -1,28 +1,41 @@
-import { Container, Input, Textarea } from "@mantine/core";
+import { Button, Container, Input, Textarea } from "@mantine/core";
 import { FC } from "react";
-import { ContentLayout } from "src/component/shared/ContentLayout";
-import { Layout } from "src/component/shared/Layout";
+import { Layout } from "src/components/shared/Layout";
+import { PageTitle } from "src/components/shared/PageTitle";
 
 const Contact: FC = () => {
   return (
     <Layout title="contact">
-      <div className="">
-        <Container>
-          <ContentLayout title="Contact" buttonTitle="Send Message">
-            <Input.Wrapper id="input-demo" label="Email" className="mt-6">
-              <Input id="input-demo" placeholder="your@email.com" />
-            </Input.Wrapper>
-            <Input.Wrapper id="input-demo" label="Name" className="mt-6">
-              <Input id="input-demo" placeholder="Taro Yamada" />
-            </Input.Wrapper>
-            <Textarea
-              placeholder="I want to order your goods"
-              label="Your message"
-              className="mt-6"
-            />
-          </ContentLayout>
-        </Container>
-      </div>
+      <Container size="md">
+        <PageTitle text="Contact" />
+
+        <Input.Wrapper id="email" label="Email" mt={20}>
+          <Input id="email" placeholder="your@email.com" mt={10} />
+        </Input.Wrapper>
+
+        <Input.Wrapper id="name" label="Name" mt={20}>
+          <Input id="name" placeholder="Taro Yamada" mt={10} />
+        </Input.Wrapper>
+
+        <Input.Wrapper id="message" label="Your message" mt={20}>
+          <Textarea
+            id="message"
+            placeholder="I want to order your goods"
+            mt={10}
+          />
+        </Input.Wrapper>
+
+        <Button
+          color="dark"
+          radius="xl"
+          size="md"
+          className="block bg-gray-800"
+          mt={40}
+          mx="auto"
+        >
+          Send
+        </Button>
+      </Container>
     </Layout>
   );
 };

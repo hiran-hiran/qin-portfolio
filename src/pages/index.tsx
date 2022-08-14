@@ -1,59 +1,52 @@
-import { Container, Text, ThemeIcon } from "@mantine/core";
+import { Box, Container, Text } from "@mantine/core";
 import { IconBrandFacebook, IconBrandTwitter, IconRss } from "@tabler/icons";
 import type { NextPage } from "next";
-import { Blog } from "src/component/blog";
-import { Github } from "src/component/Github";
-import { Portfolio } from "src/component/portfolio";
-import { Layout } from "src/component/shared/Layout";
-import { Twitter } from "src/component/Twitter";
-import { useMediaQuery } from "src/lib/mantine";
+import { Blog } from "src/components/blog";
+import { Github } from "src/components/Github";
+import { Portfolio } from "src/components/portfolio";
+import { Layout } from "src/components/shared/Layout";
+import { Twitter } from "src/components/Twitter";
+import { useCustomMediaQuery } from "src/libs/mantine";
 
 const Home: NextPage = () => {
-  const largerThanSm = useMediaQuery("sm");
+  const isPC = useCustomMediaQuery("sm");
 
   return (
     <Layout title="Home">
-      <div className="w-full bg-m_pink-6 h-60">
+      <Box className="w-full bg-m_pink-6 h-60">
         <Container size="md">
-          <div
+          <Box
             className={
-              largerThanSm
+              isPC
                 ? "flex justify-between items-center h-60"
                 : "flex flex-col justify-center h-60"
             }
           >
-            <div>
-              <Text weight={700} size={largerThanSm ? 36 : 28} color="white">
+            <Box>
+              <Text weight={700} size={isPC ? 36 : 28} color="white">
                 Qin Portfolio
               </Text>
               <Text weight={700} size="xs" color="white">
                 ポートフォリオ
               </Text>
-            </div>
+            </Box>
 
-            <div className={largerThanSm ? "space-x-2" : "space-x-2 mt-10"}>
-              <ThemeIcon radius="xl" size="md" variant="filled" color="dark">
-                <IconBrandTwitter />
-              </ThemeIcon>
-              <ThemeIcon radius="xl" size="md" variant="filled" color="dark">
-                <IconBrandFacebook />
-              </ThemeIcon>
-              <ThemeIcon radius="xl" size="md" variant="filled" color="dark">
-                <IconRss />
-              </ThemeIcon>
-            </div>
-          </div>
+            <Box className={isPC ? "flex space-x-2" : "flex space-x-2 mt-10"}>
+              <IconBrandTwitter color="transparent" fill="white" />
+              <IconBrandFacebook color="transparent" fill="white" />
+              <IconRss color="white" />
+            </Box>
+          </Box>
         </Container>
-      </div>
+      </Box>
 
       <Container size="md">
         <Blog />
         <Portfolio />
-
-        <div className={largerThanSm ? "flex justify-between" : undefined}>
+        <Box className={isPC ? "flex justify-between space-x-10" : undefined}>
           <Github />
           <Twitter />
-        </div>
+        </Box>
       </Container>
     </Layout>
   );
